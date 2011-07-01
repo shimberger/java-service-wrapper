@@ -1,0 +1,49 @@
+<project name="java-service-wrapper" basedir="../">
+
+  <property name="bits" value="${deb.arch}"/>
+
+  <target name="build">
+    <echo message="Building for ${deb.arch} bit ..."/>
+    <ant target="main" />
+  </target>
+
+  <target name="check-if-clean">
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_WrapperTickEventImpl.h"/>
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_ShutdownLock.h"/>
+    <delete file="src/c/wrapperinfo.c"/>
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_WrapperEventListenerMask.h"/>
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_WrapperInputStream.h"/>
+    <delete file="debian/files"/>
+    <delete dir="build"/>
+  </target>
+
+
+
+  <target name="clean" depends="check-if-clean" >
+    <echo message="Cleaning up..."/>
+    <mkdir dir="bin"/>
+    <mkdir dir="lib"/>
+    <mkdir dir="test"/>
+    <mkdir dir="conf"/>
+    <mkdir dir="logs" />
+    <ant target="total-clean" />
+    <delete dir="bin" />
+    <delete dir="lib" />
+    <delete dir="test" />
+    <delete dir="conf" />    
+    <delete dir="logs" />
+    <delete dir="debian/java-service-wrapper" />
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_WrapperTickEventImpl.h"/>
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_ShutdownLock.h"/>
+    <delete file="src/c/wrapperinfo.c"/>
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_WrapperEventListenerMask.h"/>
+    <delete file="src/c/org_tanukisoftware_wrapper_WrapperManager_WrapperInputStream.h"/>
+    <delete file="debian/files"/>
+    <delete dir="build"/>
+    <copy  todir="${basedir}" overwrite="true" >
+         <fileset dir="${basedir}/debian/orig"/>
+    </copy>
+  </target>
+
+
+</project>

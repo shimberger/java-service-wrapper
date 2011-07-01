@@ -1,0 +1,27 @@
+This work was packaged for Debian by:
+
+    Sebastian Himberger <sebastian@himberger.de> on Sat, 18 Jun 2011 16:31:50 +0200
+
+It was downloaded from http://wrapper.tanukisoftware.com/
+
+Upstream Author(s):
+
+    Tanuki Software, Ltd.
+    6-16-7-1001 Nishi-Kasai, Edogawa-ku
+    Tokyo 134-0088
+    Japan
+
+Copyright:
+
+    Copyright (C) 2011 Tanuki Software, Ltd.
+
+License:
+
+    GNU General Public License (GPL) Version 2 (Community Edition)
+
+The Debian packaging is:
+
+    Copyright (C) 2011 Sebastian Himberger <sebastian@himberger.de>
+
+and is licensed under the GPL version 2, 
+see `/usr/share/common-licenses/GPL-2'.

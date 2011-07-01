@@ -1,0 +1,51 @@
+#!/usr/bin/make -f
+
+# Include Debian make scripts
+#include /usr/share/cdbs/1/rules/debhelper.mk
+
+# Thanks to: http://stackoverflow.com/questions/804948/variables-in-debian-rules-makefile
+DISTRIB := $(shell dpkg-parsechangelog | sed -n -e 's/^Distribution: //p')
+DEBVERS := $(shell dpkg-parsechangelog | sed -n -e 's/^Version: //p')
+DEBARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
+VERSION := $(shell echo '$(DEBVERS)' | sed -e 's/^[[:digit:]]*://' -e 's/[~-].*//')
+
+# Some other variables, arch is needed for the wrapper ant build
+PKGNAME := 'java-service-wrapper'
+ARCH    := $(shell getconf LONG_BIT)
+DEBANT  := 'debian/debian_build.xml'
+INSROOT := 'debian/$(PKGNAME)'
+ANTCMD  := /usr/bin/ant -f $(DEBANT) -Ddeb.arch=$(ARCH) -Ddeb.debvers=$(DEBVERS) -Ddeb.version=$(VERSION) -Ddeb.pkgname=$(PKGNAME) -Ddeb.installroot=$(INSROOT)
+
+JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
+export JAVA_HOME
+
+build:
+	$(ANTCMD) build
+
+clean::
+	$(ANTCMD) clean	
+
+install:
+	mkdir -p $(INSROOT)/usr/bin
+	mkdir -p $(INSROOT)/usr/lib/$(PKGNAME)
+	mkdir -p $(INSROOT)/usr/share/java
+	mkdir -p $(INSROOT)/usr/share/doc/$(PKGNAME)/examples
+	install --strip --mode=755 bin/wrapper $(INSROOT)/usr/bin/java-service-wrapper
+	install --strip --mode=644 lib/libwrapper.so $(INSROOT)/usr/lib/$(PKGNAME)/libwrapper.so
+	install --mode=755 debian/src/usr/bin/java-service-wrapper-init-script $(INSROOT)/usr/bin/
+	cp lib/wrapper.jar $(INSROOT)/usr/share/java/java-service-wrapper.jar 
+	chmod 0644 $(INSROOT)/usr/share/java/java-service-wrapper.jar
+	install --mode=644 debian/changelog $(INSROOT)/usr/share/doc/$(PKGNAME)/changelog.Debian
+	gzip -f9 $(INSROOT)/usr/share/doc/$(PKGNAME)/changelog.Debian
+	install --mode=644 debian/copyright $(INSROOT)/usr/share/doc/$(PKGNAME)/copyright
+	install --mode=644 doc/wrapper-community-license-1.1.txt $(INSROOT)/usr/share/doc/$(PKGNAME)/wrapper-community-license-1.1.txt
+
+binary-indep:
+
+binary-arch: build install
+	mkdir -p $(INSROOT)/DEBIAN
+	cd $(INSROOT) && find * -path DEBIAN -prune -o -type f -print | xargs md5sum > DEBIAN/md5sums && cd ../../
+	dpkg-gencontrol -isp -P$(INSROOT)
+	dpkg-deb -b $(INSROOT) ../$(PKGNAME)_$(DEBVERS)_$(DEBARCH).deb
+
+binary: binary-arch

@@ -1,0 +1,5 @@
+java-service-wrapper (3.5.9-0ubuntu1) lucid; urgency=low
+
+  * Initial release of package
+
+ -- Sebastian Himberger <sebastian@himberger.de>  Fri, 01 Jul 2011 14:01:45 +0200
