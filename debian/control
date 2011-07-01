@@ -2,13 +2,15 @@ Source: java-service-wrapper
 Section: java
 Priority: extra
 Maintainer: Sebastian Himberger <sebastian@himberger.de>
-Build-Depends: debhelper (>= 7), ant, ant-optional, openjdk-6-jdk, cdbs
+Build-Depends: debhelper (>= 7), ant, ant-optional, openjdk-6-jdk
 Standards-Version: 3.8.3
 Homepage: http://wrapper.tanukisoftware.com/
 
 Package: java-service-wrapper
 Architecture: i386 amd64 
 Depends: ${shlibs:Depends}, ${misc:Depends}, dash (>= 0.5), default-jre, libc6 (>= 2.11) 
-Description: Native wrapper to run Java programs as a daemon
- This library allows Java programs to run as a unix daemon.
- It is the community version of the Java Service Wrapper.
+Description: Wrapper to run Java program as services
+ This package provides the Java Service Wrapper from Tanuki Software.
+ The wrapper allows Java programs to run as a system service.
+ It also provides means to automatically restart the JVM if the program crashes.
+ This package contains the community version of the software.
