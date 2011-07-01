@@ -2,13 +2,13 @@ Source: java-service-wrapper
 Section: java
 Priority: extra
 Maintainer: Sebastian Himberger <sebastian@himberger.de>
-Build-Depends: debhelper (>= 7), ant, ant-optional, openjdk-6-jdk
+Build-Depends: debhelper (>= 6), ant, ant-optional, openjdk-6-jdk
 Standards-Version: 3.8.3
 Homepage: http://wrapper.tanukisoftware.com/
 
 Package: java-service-wrapper
 Architecture: i386 amd64 
-Depends: ${shlibs:Depends}, ${misc:Depends}, dash (>= 0.5), default-jre, libc6 (>= 2.11) 
+Depends: ${shlibs:Depends}, ${misc:Depends}, dash (>= 0.5), default-jre, libc6 (>= 2.7) 
 Description: Wrapper to run Java program as services
  This package provides the Java Service Wrapper from Tanuki Software.
  The wrapper allows Java programs to run as a system service.

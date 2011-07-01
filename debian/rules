@@ -46,6 +46,6 @@ binary-arch: build install
 	mkdir -p $(INSROOT)/DEBIAN
 	cd $(INSROOT) && find * -path DEBIAN -prune -o -type f -print | xargs md5sum > DEBIAN/md5sums && cd ../../
 	dpkg-gencontrol -isp -P$(INSROOT)
-	dpkg-deb -b $(INSROOT) ../$(PKGNAME)_$(DEBVERS)_$(DEBARCH).deb
+	dpkg-deb -b $(INSROOT) ../$(PKGNAME)_$(DEBVERS)~$(DISTRIB)_$(DEBARCH).deb
 
 binary: binary-arch

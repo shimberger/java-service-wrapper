@@ -1,4 +1,4 @@
-java-service-wrapper (3.5.9-0ubuntu1) lucid; urgency=low
+java-service-wrapper (3.5.9-0ubuntu1~hardy) hardy; urgency=low
 
   * Initial release of package
 
