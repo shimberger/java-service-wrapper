@@ -1,0 +1,44 @@
+<html>
+<a name="TestWrapper-JVMhang"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#aaaacc" class="sectionheader3" width="*">
+<H3>Out of Memory</H3>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+            下記�?�例では、JVM出力をモニタリング?��監視）して�?
+            ?��<tt>java.lang.OutOfMemoryError</tt>?��がコンソールへ投げられた時に�?つでも�??
+            JVMを�?�動的に再起動します�??
+            エラーがアプリケーションのどこに投げられるか次第で変わります�?�で�?
+            �?ずしも�?�常にJVM�?部からのエラーを検知して取り扱�?ことができる」と�?�?わけではありません�?
+
+        </p>
+
+        
+<p>
+            フィルターは、JVMのコンソール出力をモニタリング?��監視）することで動作します�??
+            トリガーが例外で発動されるようにするために�?
+            Javaアプリケーションは、コンソールへフィルタリングされたメ�?セージを表示させなければなりません�?
+
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Example:</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.filter.trigger.1=java.lang.OutOfMemoryError
+wrapper.filter.action.1=RESTART</pre>
+</font></td>
+</tr>
+
+</table>
+       
+</td>
+</tr>
+</table>
+<html>

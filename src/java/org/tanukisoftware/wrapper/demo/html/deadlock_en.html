@@ -1,0 +1,453 @@
+<html>
+<head>
+</head>
+<body bgcolor="#e8e8e8" marginheight="10" marginwidth="10" leftmargin="10" topmargin="10" alink="#023264" vlink="#023264" link="#525D76" text="#000000">
+<center>
+<table bgcolor="#eeeeff" cellspacing="0" cellpadding="0" width="1000" border="0">
+<tr>
+<td bgcolor="#ffffff" height="1" colspan="5"></td>
+</tr>
+<tr>
+<td bgcolor="#ffffff" rowspan="4" width="1"></td><td colspan="3" width="*">
+<table cellspacing="5" cellpadding="0" width="100%">
+
+
+<td valign="top" width="*">
+<table cellpadding="0" cellspacing="0" width="100%" border="0">
+
+
+<tr>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+<tr>
+<td bgcolor="#ffffff" valign="top" width="*" colspan="2">
+<table cellpadding="4" cellspacing="0" width="100%" border="0">
+<tr>
+<td>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>wrapper.check.deadlock</H1>
+</td>
+</tr>
+<tr>
+<td>
+        
+
+        
+<p>
+            This property, in combination with the other properties, 
+            <ul>
+                
+
+<li>
+                    
+<tt><a href="#interval">wrapper.check.deadlock.interval</a></tt>,
+                </li>
+                
+<li>
+                    
+<tt><a href="#action">wrapper.check.deadlock.action</a></tt>, and
+                </li>
+                
+<li>
+                    
+<tt><a href="#output">wrapper.check.deadlock.output</a></tt>
+                
+
+</li>
+            
+</ul>
+            are used to configure how the Wrapper monitors a JVM for deadlocked threads.  
+            This can be very useful to detect and then work around potentially fatal problems 
+            which would otherwise be difficult if not impossible to work around.
+        </p>
+        
+<p>
+            Thread deadlock checks require that at least Java version 1.5 is used.  
+            Only JVMs will ignore the checks.
+        </p>
+        
+<p>
+            Checking for Deadlocks is fairly quick, but it does involve briefly 
+            locking and taking a snapshot of all threads so this property is FALSE by default.
+        </p>
+        
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Example: (Deadlock Check: Off)</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock=FALSE</pre>
+</font></td>
+</tr>
+</table>
+        
+<p>
+            
+<b>Simple Example:</b>
+
+        
+</p>
+        
+<p>
+            Please read over the property details below, 
+            but the following simple example will configure the Wrapper to log the location of a deadlock 
+            and then immediately restart the JVM.
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Example:</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock=TRUE
+wrapper.check.deadlock.interval=60
+wrapper.check.deadlock.action=RESTART
+wrapper.check.deadlock.output=FULL</pre>
+
+</font></td>
+</tr>
+</table>
+        
+<p>
+            
+<b>Deadlock?:</b>
+        
+</p>
+        
+<p>
+            Deadlocks can occur when two or more threads are locking resources in an order 
+            which results in all threads waiting indefinitely.  
+        </p>
+        
+<p>
+
+            The simplest example is where 
+            Thread A locks Object A and then attempts to lock Object B, 
+            while another Thread B has Object B locked and is waiting to lock Object A.  
+            In this case, Thread A will never release Object A because it is waiting for Object B.
+            This will never happen because Thread B will keep Object B locked indefinitely
+            as it waits for Object A to become available.
+        </p>
+    
+</td>
+</tr>
+</table>
+    
+<a name="interval"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>wrapper.check.deadlock.interval</H1>
+</td>
+</tr>
+<tr>
+<td>
+        
+     
+        
+<p>
+            The <tt>wrapper.check.deadlock.interval</tt> 
+            property makes it possible to control the interval 
+            at which the Wrapper looks for deadlocks in an application.  
+            It can be set to any interval starting with once per second, 
+            but it defaults to "60" (once per minute).  
+            In general, for applications which are known to be stable,
+            it may be fine to greatly decrease the frequency of these deadlock checks.
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Example: (every 60 seconds)</i></td>
+
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock.interval=60</pre>
+</font></td>
+</tr>
+</table>
+    
+</td>
+</tr>
+</table>
+    
+<a name="action"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+
+<H1>wrapper.check.deadlock.action</H1>
+</td>
+</tr>
+<tr>
+<td>
+        
+     
+        
+<p>
+            The <tt>wrapper.check.deadlock.action</tt> 
+            property makes it possible to control 
+            what the Wrapper does when a deadlock is detected.  
+            The default action is to <tt>RESTART</tt>.
+        </p>
+
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Example:</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock.action=RESTART</pre>
+</font></td>
+</tr>
+</table>
+        
+<p>
+            Possible actions are:
+            <ul>
+
+                
+<li>
+                    
+<b><tt>RESTART</tt></b> -  
+                    <p>
+                        will stop the current JVM and then restart a new invocation.
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>SHUTDOWN</tt></b> - 
+                    <p>
+
+                        will stop the JVM as well as the Wrapper. 
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>DUMP</tt></b> - 
+                    <p>
+                        will invoke a thread dump.  
+                        Note that because deadlocks are by definition permanent,
+                        the deadlocked state will persist until the JVM has been restarted, 
+                        meaning that the thread dump will also be invoked at each interval.
+                    </p>
+                
+</li>
+
+                
+<li>
+                    
+<b><tt>USER_&lt;n&gt;</tt></b> -
+                    <p>
+                        will cause a user defined event to be fired in the Professional Edition.
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>NONE</tt></b> - 
+                    <p>
+
+                        is useful because it will prevent any triggers with a higher number from being triggered.
+                    </p>
+                
+</li>
+            
+</ul>
+        
+</p>
+        
+<p>
+            It is possible to specify more than one actions by
+            separating then with a space or comma.  When more than one action is specified,
+            they will be executed in rapid succession in the order specified.
+        </p>
+        
+<p>
+            The following example will perform a thread dump and then restart the JVM.
+        </p>
+
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Example:</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock.action=DUMP,RESTART</pre>
+</font></td>
+</tr>
+</table>
+    
+</td>
+</tr>
+</table>
+
+    
+<a name="output"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>wrapper.check.deadlock.output</H1>
+</td>
+</tr>
+
+<tr>
+<td>
+        
+
+        
+<p>
+
+            The <tt>wrapper.check.deadlock.output</tt> 
+            property makes it possible to control 
+            what information the Wrapper causes to be logged when a deadlock is detected.
+            The default output level is <tt>FULL</tt>.
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Example:</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock.output=FULL</pre>
+
+</font></td>
+</tr>
+</table>
+        
+<p>
+            Possible output levels are:
+            <ul>
+                
+<li>
+                    
+<b><tt>FULL</tt></b> - 
+                    <p>
+                        will cause the <tt>WrapperManager</tt> class within the JVM 
+                        to output a report which includes full stack traces for the threads involved in the deadlock.
+                    </p>
+
+                    
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Output Example of "FULL":</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">INFO   | jvm 1    | WrapperManager Error: Found 2 deadlocked threads!
+INFO   | jvm 1    | WrapperManager Error: =============================
+INFO   | jvm 1    | WrapperManager Error: "Locker-2" tid=18
+INFO   | jvm 1    | WrapperManager Error:   java.lang.Thread.State: BLOCKED
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockSecond(DeadLock.java:64)
+INFO   | jvm 1    | WrapperManager Error:       - waiting on &lt;0x000000002fcac6db&gt; (a java.lang.Object) owned by "Locker-1" tid=17
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockFirst(DeadLock.java:83)
+INFO   | jvm 1    | WrapperManager Error:       - locked &lt;0x0000000029c56c60&gt; (a java.lang.Object)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.access$100(DeadLock.java:22)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock$1.run(DeadLock.java:42)
+INFO   | jvm 1    | WrapperManager Error:
+INFO   | jvm 1    | WrapperManager Error: "Locker-1" tid=17
+INFO   | jvm 1    | WrapperManager Error:   java.lang.Thread.State: BLOCKED
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockSecond(DeadLock.java:64)
+INFO   | jvm 1    | WrapperManager Error:       - waiting on &lt;0x0000000029c56c60&gt; (a java.lang.Object) owned by "Locker-2" tid=18
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockFirst(DeadLock.java:83)
+INFO   | jvm 1    | WrapperManager Error:       - locked &lt;0x000000002fcac6db&gt; (a java.lang.Object)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.access$100(DeadLock.java:22)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock$1.run(DeadLock.java:42)
+INFO   | jvm 1    | WrapperManager Error:
+INFO   | jvm 1    | WrapperManager Error: =============================
+STATUS | wrapper  | A Thread Deadlock was detected in the JVM.  Restarting JVM.</pre>
+
+</font></td>
+</tr>
+</table>
+                
+</li>
+                
+<li>
+                    
+<b><tt>SIMPLE</tt></b> - 
+                    <p>
+                        will cause the WrapperManager class within the JVM to output a report
+                        which includes only a brief summary naming the threads and objects involved in the deadlock.  
+                        In many cases, this is enough especially for known problems.
+                    </p>
+                    
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+
+<tr>
+<td class="listingcaption"><i>Output Example of "SIMPLE":</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">INFO   | jvm 1    | WrapperManager Error: Found 2 deadlocked threads!
+INFO   | jvm 1    | WrapperManager Error: =============================
+INFO   | jvm 1    | WrapperManager Error: "Locker-2" BLOCKED waiting on a java.lang.Object owned by "Locker-1"
+INFO   | jvm 1    | WrapperManager Error: "Locker-1" BLOCKED waiting on a java.lang.Object owned by "Locker-2"
+INFO   | jvm 1    | WrapperManager Error: =============================
+STATUS | wrapper  | A Thread Deadlock was detected in the JVM.  Restarting JVM.</pre>
+</font></td>
+</tr>
+</table>
+                
+</li>
+                
+<li>
+                    
+<b><tt>NONE</tt></b> - 
+                    <p>
+                        will cause the WrapperManager class within the JVM to suppress all output.  
+                        This may be desired for production systems when a problem is known 
+                        but you don't want or need to maintain too much information in the logs.  
+                        The Wrapper process, as in the other options, 
+                        will always log a single entry to provide a reason why the triggered
+                        <a href="#action">action</a> takes place.
+                    </p>
+                    
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Output Example of "NONE":</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">STATUS | wrapper  | A Thread Deadlock was detected in the JVM.  Restarting JVM.</pre>
+</font></td>
+</tr>
+</table>                
+</li>            
+</ul>        
+</p>    
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td><td width="4"></td>
+</tr>
+<tr>
+<td bgcolor="#808080" height="1" colspan="3"></td>
+</tr>
+</table>
+</center>
+</body>
+</html>

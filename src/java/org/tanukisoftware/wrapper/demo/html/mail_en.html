@@ -1,0 +1,41 @@
+<html>
+    <b>
+        The Wrapper is able to send out alert emails to in response to certain events.<br> 
+        See the documentation of individual properties for details on their use.<br>
+    </b>
+    <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+        <tr>
+            <td class="listingcaption">
+                <i>
+                    Example (send email in response to JVM restarts):
+                </i>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#eeeeee" class="listingcell">
+                <font color="#444444">
+                    <pre class="listingpre"># Common Event Email settings.
+#wrapper.event.default.email.debug=TRUE
+wrapper.event.default.email.smtp.host=smtp.mycompany.com
+wrapper.event.default.email.smtp.port=25
+wrapper.event.default.email.subject=[%WRAPPER_HOSTNAME%:%WRAPPER_NAME%:%WRAPPER_EVENT_NAME%] Event Notification
+wrapper.event.default.email.sender=myapp-noreply@mycompany.com
+wrapper.event.default.email.recipient=myapp-admin@mycompany.com
+# Event specific settings.
+wrapper.event.jvm_restart.email=TRUE
+wrapper.event.jvm_restart.email.body=The JVM was restarted.\n\nPlease check on its status.\n</pre>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <p>
+        The properties are all of the form <tt>wrapper.event.&lt;x&gt;.email*</tt><br>
+        where <tt>x</tt> is one of the "<a href="#events">Event Types</a>" defined above or the keyword 
+        <tt>default</tt>.
+    </p>
+    <p>
+        Whenever a property is not specifically defined for any of the event names,<br>
+        the <tt>default</tt> value will be used.
+        This is useful for setting values which will be common to all event emails.<br>
+    </p>
+ </html>

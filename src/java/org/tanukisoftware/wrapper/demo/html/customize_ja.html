@@ -1,0 +1,208 @@
+<html>
+    <a name="wrapper"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>自�?のWrapperをカスタマイズする</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Wrapperバ�?�ジョン3.3.7のリリースで�? Wrapperは、リソースの�?くつかを変更したり�?? Windows上で外観をカスタマイズしたり�?�などの能力�?�備えた機�?�の提供を開始しました�?
+                </p>
+                <p>
+                    Wrapperバイナリ版�?�wrapperw.exe」をカスタマイズするとき�?? "--customize"コマンドで�?定された新しいリソースで新しいバ�?�ジョンのバイナリが作�?�されます�?? そ�?�結果となるバイナリはロ�?クされ、もは�?カスタマイズはできなくなります�??
+                </p>
+                <p>
+                    新しいカスタマ�?�・バイナリを作�?�するとき�?�次の引数を結合できます�?? 引数 "--target {target.exe}" は、常に�?要です�??
+                </p>
+                <p>
+                     全てのファイル名�?�パスが�?�呼び出し�??への相対�?な配置場�?である�?要�?�なく�??
+                Wrapperバイナリの配置場�?への相対であることに注意してください�?
+                例えば、次のコマンドでは、�??<tt>wrapper<b>w</b>.exe</tt>」バイナリと
+                同じ�?ィレクトリーにターゲ�?ト�?�ファイルを作�?�し、同様に、その�?ィレクトリーに新しいアイコン�?
+                <a href="prop-splashscreen-mode.html">スプラ�?シュ・スクリーン</a>を探すことになります�?
+ 
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                           <font color="#444444">
+                               <pre class="listingpre">bin\wrapperw.exe --customize --target myapp.exe --icon myicon.ico --splash mysplash.bmp</pre>
+                           </font>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <a name="target"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>実行ターゲ�?ト�?</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    Wrapperバイナリがカスタマイズされるとき�?? 常に、カスタマイズ・バ�?�ジョン用に、新しい ファイル名を�?定する�?要があります�?? 既に同じファイル名が存在する場合には、Wrapperは常にそ�?�ファイルを上書きします�?? 
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">wrapperw.exe --target myapp.exe</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    全てまとめてパラメーターを置くと、このような <a href="props-command-line.html">コマンドライン</a>となります�? 
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">bin\wrapperw.exe --customize --icon MyIcon.ico --splash MySplash.bmp --target MyApp.exe</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    こ�?�コマンド�?��?
+               �?<tt>wrapper<b>w</b>.exe</tt>」が配置して�?ある同じ�?ィレクトリーに�?
+               カスタマイズされたアイコン�?<a href="prop-splashscreen-mode.html">スプラ�?シュ・スクリーン</a>と共に�?
+               新しい実行ファイル�?<tt>MyApp.exe</tt>」を作�?�します�??
+
+                </p>
+            </td>
+        </tr>
+    </table>
+    <a name="icon"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>アイコンをカスタマイズする</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="note">
+                    <table cellspacing="0" cellpadding="2" width="100%" border="0">
+                        <tr>
+                            <td nowrap="nowrap" width="50" valign="top">
+                                <p class="notelabel">
+                                    <font color="#0000a0"><b>NOTE</b></font>
+                                </p>
+                            </td>
+                            <td bgcolor="#bbbbdd" class="notebody" width="*">
+                                <font color="#222260">
+                                    <p>
+                                        こ�?�機�?�を利用するためには�?
+                Java Service Wrapperの<a href="accountLicenses.jsp">スタン�?ード版、あるいは、�?�ロフェ�?ショナル�?</a>をご利用ください�?
+
+                                    </p>
+                               </font>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    Wrapperは、デフォルト�?�アイコンを同梱して配�?されて�?ますが�?
+                しかしながら、Wrapperを同梱して�?る商品�?�アイコンで置き換えた�?と�?�?開発�?の希望のために�?
+                Wrapperは、�?晴らし�?アプリケーション・ランチャーでもあると�?�?役目も提供して�?ます�??
+
+                </p>
+                <p>
+                    アイコン・ファイルは、標準�?�マルチ�?�レイヤー・アイコン・ファイルであり�?
+                サポ�?�トされる�?要がある全ての解像度�?アイコン・サイズを含んで�?ます�??
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td class="listingcaption"><i>設定例�?</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">wrapperw.exe --target myapp.exe --icon myicon.ico</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <a name="splash"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>スプラ�?シュ・スクリーンをカスタマイズする</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="note">
+                    <table cellspacing="0" cellpadding="2" width="100%" border="0">
+                        <tr>
+                            <td nowrap="nowrap" width="50" valign="top">
+                                <p class="notelabel">
+                                    <font color="#0000a0"><b>NOTE</b></font>
+                                </p>
+                            </td>
+                            <td bgcolor="#bbbbdd" class="notebody" width="*">
+                                <font color="#222260">
+                                    <p>
+                                        こ�?�機�?�を利用するためには�?
+                Java Service Wrapperの<a href="accountLicenses.jsp">スタン�?ード版、あるいは、�?�ロフェ�?ショナル�?</a>をご利用ください�?
+                                    </p>
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    Wrapperのコンソールレス版�??<tt>wrapper<b>w</b>.exe</tt>」�?��?
+                �?フォルトで、スタート時に<a href="prop-splashscreen-mode.html">スプラ�?シュ・スクリーン</a>を表示します�??
+                こ�?�スプラ�?シュ・スクリーンは、Wrapperを同梱して�?る商品�?�合わせたイメージ画像で置き換えることでカスタマイズすることができま
+                </p>
+                <p>
+                    Java�?部からではなく�?�Wrapperにスプラ�?シュ・スクリーンを表示させることは�?
+                アプリケーション・スタートア�?プをとてもresponsiveらしくさせる利点があります�??
+                そ�?��?由は、スプラ�?シュ・スクリーンはJVM起動前に表示され�?
+                Javaアプリケーションのクラスがロード（読み込み?��されて初期化されて見える状態を維持して�?るためです�??
+
+                </p>
+                <p>
+                    ?��<tt><a href="prop-splashscreen-mode.html">wrapper.splashscreen.mode</a></tt>?��
+                プロパティを使って、スプラ�?シュ・スクリーンの動作につ�?てコントロールすることができます�??
+
+                </p>
+                <p>
+                    こ�?�引数では、スプラ�?シュ・スクリーンを表示しな�?ため�?
+                �?<tt>wrapper.exe</tt>」バイナリでは非合法です�??
+
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td class="listingcaption"><i>Example:</i></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">wrapperw.exe --target myapp.exe --splash mysplash.bmp</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    現在のところ、唯�?、ビ�?ト�?�ッ�? (*.bmp) ファイルをサポ�?�トして�?ます�??
+                画像サイズ�?ビット深さ�?�制限�?�ありません�?
+
+                </p>
+            </td>
+        </tr>
+    </table>
+</html>

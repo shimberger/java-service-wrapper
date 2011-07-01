@@ -1,0 +1,423 @@
+<html>
+<head>
+
+</head>
+
+<body >
+<a name="N10008"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>コンフィギュレーション・プロパティの概�?</H1>
+</td>
+</tr>
+
+    
+<a name="N1002D"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>wrapper.check.deadlock プロパティ</H1>
+</td>
+</tr>
+<tr>
+<td>
+        
+   
+        
+<p>
+            こ�?�プロパティは、他�?�プロパティとの�?み合わせで�?
+            <ul>
+                
+<li>
+                    ?��<tt><a href="#interval">wrapper.check.deadlock.interval</a></tt>?���?
+                </li>
+                
+<li>
+                    ?��<tt><a href="#action">wrapper.check.deadlock.action</a></tt>?���?
+                </li>
+                
+<li>
+                    ?��<tt><a href="#output">wrapper.check.deadlock.output</a></tt>?��
+                </li>
+            
+</ul>
+            �?�?ドロ�?クしたスレ�?ドにつ�?て
+            JVMをどのようにモニター?��監視）するかを設定するために使われます�??
+            
+            これは、何とか回避策がある場合には�?
+            難しいような潜在�?な致命�?な問題を検知して回避するのに、とても役に立ちます�??
+        </p>
+        
+<p>
+            スレ�?ド�?��?�?ドロ�?ク・チェ�?クは、少なくと�?Javaバ�?�ジョン1.5の利用して�?ることが�?要です�??
+            JVM�?け�?�チェ�?クを無視します�??
+        </p>
+        
+<p>
+            �?�?ドロ�?クのチェ�?クの処�?は、わりと高�?�ですが�?
+            全てのスレ�?ドを�?時的にロ�?クしてスナップショ�?トをとります�?�で�?
+            こ�?�プロパティは�?フォルトで「FALSE」になって�?ます�??
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>設定例：（デ�?ドロ�?ク・チェ�?ク?��OFF?�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock=FALSE</pre>
+</font></td>
+</tr>
+</table>
+        
+<p>
+            
+<b>設定例�?</b>
+        
+</p>
+        
+<p>
+            プロパティの詳細につ�?て下記をご覧�?ただきますが�?
+            次のシンプルな例では、デ�?ドロ�?クの場�?をログ化するよ�?にWrapperを設定してあり�?
+            即座にJVMを�?�起動します�??
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>設定例�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock=TRUE
+wrapper.check.deadlock.interval=60
+wrapper.check.deadlock.action=RESTART
+wrapper.check.deadlock.output=FULL</pre>
+</font></td>
+</tr>
+</table>
+        
+<p>
+            
+<b>�?�?ドロ�?クって?�?</b>
+        
+</p>
+        
+<p>
+            �?数のスレ�?ドがリソースをロ�?クして�?るときに�?
+            全てのスレ�?ドが無制限に�?ち状態になる状態になり�??
+            �?�?ドロ�?クが起きることがあります�??
+        </p>
+        
+<p>
+            �?番シンプルな例だと、スレ�?ドＡがオブジェクトＡをロ�?クして�?る状態で�?
+            オブジェクトＢのロ�?クを試みるケースのときに�?
+            そ�?�間�?�他�?�スレ�?ドＢがオブジェクトＢをロ�?クした状態で
+            オブジェクトＡをロ�?クしよ�?と�?機して�?るケースです�??
+            
+            こ�?�ケースでは�?
+            スレ�?ドＡは、オブジェクトＢ�?ちのため�?
+            オブジェクトＡを決して開放されることはありません�?
+            
+            同時に、スレ�?ドＢは、オブジェクトＡが有効になる�?�を�?って�?るため�??
+            オブジェクトＢを永�?にロ�?クしたままになるため�??
+            両�?とも決して前に進めるはずがありません�?
+        </p>
+    
+</td>
+</tr>
+</table>
+    
+<a name="interval"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>wrapper.check.deadlock.interval</H1>
+</td>
+</tr>
+
+<tr>
+<td>
+        
+<p>
+            ?��<tt>wrapper.check.deadlock.interval</tt>?��
+            プロパティでは�?
+            Wrapperがアプリケーションの�?�?ドロ�?クを探�?
+            インターバル?���?定間隔�?�周期）�?�コントロールを可能にします�??
+            �?短で?��秒毎に?��回のインターバルを設定できますが�?
+            �?フォルトでは�?60」（１�??あたり１回?��です�??
+            
+            �?般�?に、状態が安定して�?ると�?かって�?るアプリケーションの場合には�?
+            こ�?��?�?ドロ�?ク・チェ�?クの頻度を大�?に下げることも良�?でしょ�?�?
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>設定例：（６０秒毎�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock.interval=60</pre>
+</font></td>
+</tr>
+</table>
+    
+</td>
+</tr>
+</table>
+    
+<a name="action"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>wrapper.check.deadlock.action</H1>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+            ?��<tt>wrapper.check.deadlock.action</tt>?��
+            プロパティでは�?
+            �?�?ドロ�?クを検知したとき�?�Wrapperはど�?するか�??
+            Wrapperの動作につ�?てのコントロールを可能にします�??
+            �?フォルト�?�動作では、�??<tt>RESTART</tt>」です�??
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>設定例：（�?�起動する�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock.action=RESTART</pre>
+</font></td>
+</tr>
+</table>
+        
+<p>
+            可能な動作�?�次のとおり?�?
+            <ul>
+                
+<li>
+                    
+<b><tt>RESTART</tt></b> -  
+                    <p>
+                        カレン�?JVMを停止して、新しい「起動�?�試み?�?invocation?���?��?�再起動します�??
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>SHUTDOWN</tt></b> -  
+                    <p>
+                        JVMを停止して、同様にWrapperも停止します�??
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>DUMP</tt></b> - 
+                    <p>
+                        スレ�?ド�?��?ンプを呼び出します�??
+                        当然のことながら、デ�?ドロ�?クが永続して�?るため�??
+                        JVMが�?�起動するまでずっと、デ�?ドロ�?クしたス�?ート（状態）が持続します�??
+                        つまり�?�スレ�?ド�?��?ンプもまた各インターバル?���?定間隔�?�周期）ごとに呼び出されま�?
+                        のでご注意く�?さい�?
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>DUMP_RESTART</tt></b> -   
+                    <p>
+                        スレ�?ド�?��?ンプを呼び出し�??
+                        カレン�?JVMを停止して、新しい「起動�?�試み?�?invocation?���?��?�再起動します�??
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>DUMP_SHUTDOWN</tt></b> -  
+                    <p>
+                        スレ�?ド�?��?ンプを呼び出し�??
+                        JVMを停止して、同様にWrapperも停止します�??
+                    </p>
+                
+</li>
+                
+<li>
+                    
+<b><tt>NONE</tt></b> - 
+                    <p>
+                        これは便利です�??
+                        なぜなら�??高い数値を持つトリガーなら�??
+                        �?かなるトリガーもトリガーされることを避けることができるので�?
+                        because it will prevent any triggers 
+                        with a higher number from being triggered.
+                    </p>
+                
+</li>
+            
+</ul>
+        
+</p>
+    
+</td>
+</tr>
+</table>
+    
+<a name="output"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#8888aa" class="sectionheader1" width="*">
+<H1>wrapper.check.deadlock.output</H1>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+            ?��<tt>wrapper.check.deadlock.output</tt>?��
+            プロパティでは�?
+            �?�?ドロ�?クを検知したとき�?�Wrapperがログ化する情報をコントロールを可能にします�??
+            �?フォルト�?�力では、�??<tt>FULL</tt>」です�??
+        </p>
+        
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>設定例：（完�?�なフルログ?�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper.check.deadlock.output=FULL</pre>
+</font></td>
+</tr>
+</table>
+        
+<p>
+            可能な出力レベルは次のとおり?�?
+            <ul>
+                
+<li>
+                    
+<b><tt>FULL</tt></b> -  
+                    <p>
+                        JVM�?部で<tt>WrapperManager</tt>クラスが�??
+                        �?�?ドロ�?クで呼び出されたスレ�?ド�?�完�?�なスタ�?ク・トレース?���?時記�?�の軌跡?��を含�?
+                        レポ�?�トを出力します�??
+                    </p>
+                    
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>「FULL?��フル?���?��?�出力例�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">INFO   | jvm 1    | WrapperManager Error: Found 2 deadlocked threads!
+INFO   | jvm 1    | WrapperManager Error: =============================
+INFO   | jvm 1    | WrapperManager Error: "Locker-2" tid=18
+INFO   | jvm 1    | WrapperManager Error:   java.lang.Thread.State: BLOCKED
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockSecond(DeadLock.java:64)
+INFO   | jvm 1    | WrapperManager Error:       - waiting on &lt;0x000000002fcac6db&gt; (a java.lang.Object) owned by "Locker-1" tid=17
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockFirst(DeadLock.java:83)
+INFO   | jvm 1    | WrapperManager Error:       - locked &lt;0x0000000029c56c60&gt; (a java.lang.Object)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.access$100(DeadLock.java:22)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock$1.run(DeadLock.java:42)
+INFO   | jvm 1    | WrapperManager Error:
+INFO   | jvm 1    | WrapperManager Error: "Locker-1" tid=17
+INFO   | jvm 1    | WrapperManager Error:   java.lang.Thread.State: BLOCKED
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockSecond(DeadLock.java:64)
+INFO   | jvm 1    | WrapperManager Error:       - waiting on &lt;0x0000000029c56c60&gt; (a java.lang.Object) owned by "Locker-2" tid=18
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.lockFirst(DeadLock.java:83)
+INFO   | jvm 1    | WrapperManager Error:       - locked &lt;0x000000002fcac6db&gt; (a java.lang.Object)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock.access$100(DeadLock.java:22)
+INFO   | jvm 1    | WrapperManager Error:     at org.tanukisoftware.wrapper.test.DeadLock$1.run(DeadLock.java:42)
+INFO   | jvm 1    | WrapperManager Error:
+INFO   | jvm 1    | WrapperManager Error: =============================
+STATUS | wrapper  | A Thread Deadlock was detected in the JVM.  Restarting JVM.</pre>
+</font></td>
+</tr>
+</table>
+                
+</li>
+                
+<li>
+                    
+<b><tt>SIMPLE</tt></b> -  
+                    <p>
+                        JVM�?部で<tt>WrapperManager</tt>クラスが�??
+                        �?�?ドロ�?クで呼び出されたスレ�?ドやオブジェクト�?�簡単な概要だけを含�?
+                        レポ�?�トを出力します�??
+                        多くの場合�?�特によく知られた問題に関しては十�??です�??
+                    </p>
+                    
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>「SIMPLE?��シンプル?���?��?�出力�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">INFO   | jvm 1    | WrapperManager Error: Found 2 deadlocked threads!
+INFO   | jvm 1    | WrapperManager Error: =============================
+INFO   | jvm 1    | WrapperManager Error: "Locker-2" BLOCKED waiting on a java.lang.Object owned by "Locker-1"
+INFO   | jvm 1    | WrapperManager Error: "Locker-1" BLOCKED waiting on a java.lang.Object owned by "Locker-2"
+INFO   | jvm 1    | WrapperManager Error: =============================
+STATUS | wrapper  | A Thread Deadlock was detected in the JVM.  Restarting JVM.</pre>
+</font></td>
+</tr>
+</table>
+                
+</li>
+                
+<li>
+                    
+<b><tt>NONE</tt></b> -  
+                    <p>
+                        JVM�?部で<tt>WrapperManager</tt>クラスが�??
+                        全ての出力を抑えます�??
+                        
+                        これはシス�?�?製品�?�利用に向いて�?ます�??
+                        問題�?�把握しており�?
+                        たくさんのログ�?報を望まな�?、あるいは、保持する�?要がな�?、ケースに適して�?ます�??
+                        
+                        そ�?�他�?�選択として、Wrapperプロセスは�?
+                        トリガーされ�?<a href="#action">アクション</a>�?
+                        発生した理由を提供するために�?
+                        常にシングル・エントリをログ化して�?きます�??
+                    </p>                    
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>「NONE?��なし）�?��?�出力�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">STATUS | wrapper  | A Thread Deadlock was detected in the JVM.  Restarting JVM.</pre>
+</font></td>
+</tr>
+</table>                
+</li>            
+</ul>        
+</p>    
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td><td width="4"></td>
+</tr>
+<tr>
+<td bgcolor="#808080" height="1" colspan="3"></td>
+</tr>
+</table>
+</center>
+</body>
+</html>

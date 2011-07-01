@@ -1,0 +1,7 @@
+<html>
+    The <b>WrapperManager.exec()</b> function is a alternative to the Java-Runtime.exec() which has the disadvantage to use the on some platforms memory expensive fork() method to create a new process.<br><br>The problem on those platforms is, that if the Parent Process from which one wants to start a side process, fork() causes to clone the memory of the parent for the child.<br>This will <u>double</u> the used memory for a short time.<br>Given a fairly large application which is close to the systems memory quota, it might fail to just create a small application like ls or the memory is going to get swapped on the HD, which decreases the performance drastically.
+    <p>
+        Another issue is to ease bind or detach the child while starting from the parent.<br>If the Java Process terminates expected or unexpected the wrapper will clean all bind processes which haven't finished yet.
+    </p>
+    <br><br>For better consistency the exec() function was implemented as close to the Runtime.exec() function in Java as possible.
+</html>

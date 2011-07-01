@@ -1,0 +1,221 @@
+<html>
+<a name="TestWrapper-NT"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#9999bb" class="sectionheader2" width="*">
+<H2>Windowsサービスの?��つとして動か�?</H2>
+
+</td>
+</tr>
+<tr>
+<td>
+            
+            
+<p>
+                 Windowsサービスの?��つとして動かすとき�?�このプリケーションは�?イアログを表示することができません�? そ�?�ため、このサンプル・アプリケーションは、あまり面白くありませんが�?? しかしながら、�?達が�??���???���?��?ストをして�? Windowsサービスの?��つとして正しくWrapperが動作することを実証しました�?
+</p><p>�?初にすることは、このアプリケーションのインスト�?�ルです�?? 次のコマンドを実行して、Windowsサービスの?��つとして動かしてください?�? 
+            </p>
+            
+
+            
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">Install-&lt;Your App&gt;.bat</pre>
+</font></td>
+</tr>
+</table>
+            
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>こ�?�出力が見えます�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+
+<pre class="listingpre">wrapper  | &lt;Your App&gt installed.</pre>
+</font></td>
+</tr>
+</table>
+            
+<p>
+                �?旦、アプリケーションがサービスの?��つとしてインスト�?�ルしたら�?? 早速�?�それをスタートしてみましょ�?�? 
+            </p>
+            
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">net start &lt;Your App&gt</pre>
+</font></td>
+
+</tr>
+</table>
+            
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>こ�?�出力が見えま�?</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">&lt;Your App&gt service is starting.
+&lt;Your App&gt service was started successfully.</pre>
+</font></td>
+</tr>
+</table>
+            
+<p>
+
+               そ�?�サービスは、次のコマンドを実行して、アンインスト�?�ルすることができます�?:
+            </p>
+            
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">Uninstall&lt;Your App&gt;-NT.bat</pre>
+</font></td>
+</tr>
+</table>
+            
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>もしサービスが実行中なら�?�、この出力が見えます�?</i></td>
+
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper  | Service is running.  Stopping it...
+wrapper  | Waiting to stop...
+wrapper  | &lt;Your App&gt stopped.
+wrapper  | &lt;Your App&gt removed.</pre>
+</font></td>
+</tr>
+</table>
+            
+<p>
+                           �?<tt><a href="prop-logfile.html">logs/wrapper.log</a></tt>�?
+                の中身を見ると、このコンソールにとても類似した出力が見られると思います�??
+                今回を除き�?�そのスタート�?�メ�?セージは、アプリケーションがサービスとして開始されたことを知らせて�?ます�??
+
+            </p>
+            
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+
+<tr>
+<td class="listingcaption"><i>wrapper.log</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper  | 2001/12/06 17:34:21 | --&gt; Wrapper Started as Service
+wrapper  | 2001/12/06 17:34:21 | Launching a JVM...
+jvm 1    | 2001/12/06 17:34:22 | Initializing...
+jvm 1    | 2001/12/06 17:34:22 | Wrapper (Version 3.x.x)
+jvm 1    | 2001/12/06 17:34:22 |
+jvm 1    | 2001/12/06 17:34:22 | start()</pre>
+</font></td>
+</tr>
+</table>
+            
+<p>
+                Windowsサービス上で起きる、いくつかその他�?�アクションの結果です�?:
+            </p>
+
+            
+<a name="&lt;Your App&gt-NT-Logout"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#aaaacc" class="sectionheader3" width="*">
+<H3>ユーザー・ログアウ�? と そ�?�復帰</H3>
+</td>
+</tr>
+
+<tr>
+<td>
+                
+                
+<p>
+                    ユーザーのログアウトでログ・エントリが作�?�されますが、サービスには影響ありません�? 
+                </p>
+
+                
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>wrapper.log</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper  | 2001/12/06 17:39:39 | --&gt; Wrapper Started as Service
+wrapper  | 2001/12/06 17:39:40 | Launching a JVM...
+jvm 1    | 2001/12/06 17:39:40 | Initializing...
+jvm 1    | 2001/12/06 17:39:40 | Wrapper (Version 3.x.x)
+jvm 1    | 2001/12/06 17:39:40 |
+jvm 1    | 2001/12/06 17:39:41 | start()
+wrapper  | 2001/12/06 17:40:07 | User logged out.  Ignored.
+jvm 1    | 2001/12/06 17:40:07 | controlEvent(202)</pre>
+</font></td>
+</tr>
+</table>
+            
+</td>
+
+</tr>
+</table>
+            
+<a name="&lt;Your App&gt;-NT-Restart"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#aaaacc" class="sectionheader3" width="*">
+<H3>マシン再起�?</H3>
+</td>
+</tr>
+
+<tr>
+<td>
+                
+                
+
+<p>
+                    これは、シャ�?トダウン・シグナルに続く、ログアウト�?�シグナルの結果になります�?? サービスがキレイにシャ�?トダウンされると、�?�シン再起動�?�後�?�戻ってきます�?? 
+                </p>
+                
+<p>
+                    ユーザーのログアウトでログ・エントリが作�?�されますが、サービスには影響ありません�? 
+                </p>
+                
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>wrapper.log</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+
+<pre class="listingpre">wrapper  | 2001/12/06 17:41:04 | --&gt; Wrapper Started as Service
+wrapper  | 2001/12/06 17:41:05 | Launching a JVM...
+jvm 1    | 2001/12/06 17:41:05 | Initializing...
+jvm 1    | 2001/12/06 17:41:05 | Wrapper (Version 3.x.x)
+jvm 1    | 2001/12/06 17:41:05 |
+jvm 1    | 2001/12/06 17:41:05 | start()
+wrapper  | 2001/12/06 17:41:25 | User logged out.  Ignored.
+jvm 1    | 2001/12/06 17:41:26 | controlEvent(202)
+wrapper  | 2001/12/06 17:41:27 | Machine is shutting down.
+jvm 1    | 2001/12/06 17:41:27 | controlEvent(203)
+jvm 1    | 2001/12/06 17:41:28 | stop(0)
+wrapper  | 2001/12/06 17:41:29 | &lt;-- Wrapper Stopped
+wrapper  | 2001/12/06 17:44:12 | --&gt; Wrapper Started as Service
+wrapper  | 2001/12/06 17:44:12 | Launching a JVM...
+jvm 1    | 2001/12/06 17:44:17 | Initializing...
+jvm 1    | 2001/12/06 17:44:21 | Wrapper (Version 3.x.x)
+jvm 1    | 2001/12/06 17:44:21 |
+jvm 1    | 2001/12/06 17:44:23 | start()</pre>
+</font></td>
+</tr>
+</table>
+            
+</td>
+</tr>
+</table>
+        
+</td>
+</tr>
+
+</table>
+</html>

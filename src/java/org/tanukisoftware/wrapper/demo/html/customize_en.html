@@ -1,0 +1,214 @@
+<html>
+    <a name="wrapper"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>Customize your Wrapper</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    With the release of Wrapper version 3.3.7, 
+                    the Wrapper provides the ability to change 
+                    some of its resources and to customize its appearance on Windows.
+                </p>
+                <p>
+                    When customizing the Wrapper binary "<tt>wrapper<b>w</b>.exe</tt>", 
+                    a new version of the binary will be created
+                    with the new resources specified with the "--customize" command.  
+                    The resulting binary will be locked, 
+                    meaning that it is no longer possible to customize it.
+                </p>
+                <p>
+                    When creating a new customer binary, any of the following arguments can be combined.
+                    The "--target {target.exe}" argument is always required.
+                </p>
+                <p>
+                    Please note that the paths of all file names are relative to 
+                    the location of the Wrapper binary, 
+                    not necessarily relative to the location of the caller. 
+                    For example, the following command will create the target file in the same directory
+                    as the <tt>wrapper<b>w</b>.exe</tt> binary 
+                    and expect to find the new icon and splashscreen in that directory as well:
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                           <font color="#444444">
+                               <pre class="listingpre">bin\wrapperw.exe --customize --target myapp.exe --icon myicon.ico --splash mysplash.bmp</pre>
+                           </font>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <a name="target"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>The Target Executable</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    When the Wrapper binary is customized, 
+                    it is necessary to always specify a new file name for the customized version.  
+                    The Wrapper will always overwrite the file if it already exists.
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">wrapperw.exe --target myapp.exe</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    Putting the parameter all together would result to a 
+                    <a href="props-command-line.html">command line</a> like this:
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">bin\wrapperw.exe --customize --icon MyIcon.ico --splash MySplash.bmp --target MyApp.exe</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    This command will create a new executable <tt>MyApp.exe</tt> 
+                    in the same directory the <tt>wrapper<b>w</b>.exe</tt> is located, 
+                    with a customized Icon and <a href="prop-splashscreen-mode.html">Splash Screen</a>.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <a name="icon"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>Customize The Icon</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="note">
+                    <table cellspacing="0" cellpadding="2" width="100%" border="0">
+                        <tr>
+                            <td nowrap="nowrap" width="50" valign="top">
+                                <p class="notelabel">
+                                    <font color="#0000a0"><b>NOTE</b></font>
+                                </p>
+                            </td>
+                            <td bgcolor="#bbbbdd" class="notebody" width="*">
+                                <font color="#222260">
+                                    <p>
+                                        This function requires either <a href="accountLicenses.jsp">Standard or Professional Edition</a> 
+                                        of the Java Service Wrapper.
+                                    </p>
+                               </font>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    The Wrapper is shipped with a default icon, 
+                    however the Wrapper has proven to be also an excellent Application launcher, 
+                    for this purpose a software developer may wish to replace the Icon 
+                    with that of the product the Wrapper is being used with.
+                </p>
+                <p>
+                    The icon file is a standard multi layer icon file that 
+                    contains all of the resolution and icon sizes that need to be supported.
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td class="listingcaption"><i>Example:</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">wrapperw.exe --target myapp.exe --icon myicon.ico</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <a name="splash"></a>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>Customize The Splash Screen</H2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="note">
+                    <table cellspacing="0" cellpadding="2" width="100%" border="0">
+                        <tr>
+                            <td nowrap="nowrap" width="50" valign="top">
+                                <p class="notelabel">
+                                    <font color="#0000a0"><b>NOTE</b></font>
+                                </p>
+                            </td>
+                            <td bgcolor="#bbbbdd" class="notebody" width="*">
+                                <font color="#222260">
+                                    <p>
+                                        This function requires either <a href="accountLicenses.jsp">Standard or Professional Edition</a> 
+                                        of the Java Service Wrapper.
+                                    </p>
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    The consoleless version of the Wrapper, <tt>wrapper<b>w</b>.exe</tt>, 
+                    will by default show a <a href="prop-splashscreen-mode.html">Splash Screen</a> on startup. 
+                    This splash screen can be customized with an image representing
+                    the product that the Wrapper is being used with.
+                </p>
+                <p>
+                    Having the Wrapper display a splash screen rather than doing so from within Java
+                    has the benefit of making the applications startup seem very responsive 
+                    because the splash screen will be displayed before the JVM is launched 
+                    and can remain visible as the Java application's classes are loaded and initialized.
+                </p>
+                <p>
+                    The way the splash screen behaves can be controled with the
+                    <tt><a href="prop-splashscreen-mode.html">wrapper.splashscreen.mode</a></tt>
+                    property.
+                </p>
+                <p>
+                    This argument is illegal for the <tt>wrapper.exe</tt> binary because it does not
+                    display a splash screen.
+                </p>
+                <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+                    <tr>
+                        <td class="listingcaption"><i>Example:</i></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#eeeeee" class="listingcell">
+                            <font color="#444444">
+                                <pre class="listingpre">wrapperw.exe --target myapp.exe --splash mysplash.bmp</pre>
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    Currently only bitmap (*.bmp) files are supported. 
+                    There are no size or bit-depth restrictions set.
+                </p>
+            </td>
+        </tr>
+    </table>
+</html>

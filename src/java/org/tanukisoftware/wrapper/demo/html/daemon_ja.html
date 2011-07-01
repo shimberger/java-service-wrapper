@@ -1,0 +1,61 @@
+<html>
+    <table cellpadding="2" cellspacing="0" width="100%" border="0">
+        <tr>
+            <td rowspan="3" width="10">
+            </td>
+            <td bgcolor="#9999bb" class="sectionheader2" width="*">
+                <H2>リブ�?�ト（�?�起動）でスタートするよ�?にアプリケーションをインスト�?�ルする</H2>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+        <p>
+            Introduced in version 3.4.0, the script provides a way to embed the wrapper (and finally your
+            application).<br>
+            The script will automatically detect your OS - on Linux plattforms also some
+                    distributions - and perform the steps necessary to install the wrapper script into the initialization process of your OS.
+        </p>
+        <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+            <tr>
+                <td bgcolor="#eeeeee" class="listingcell">
+                    <font color="#444444">
+                    <pre class="listingpre">$ sudo bin/testwrapper install
+[sudo] password for tanuki:
+Detected Ubuntu:
+Installing service testwrapper from current directory /home/tanuki/wrapper/bin
+Adding system startup for /etc/init.d/testwrapper ...
+...</pre>
+                    </font>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <u>As the script installs itself into your OS, it is necessary to run the install (and uninstall) option as user root!</u>
+        </p>
+        <p>
+            For freebsd and MacOSX users the script provides a default configuration file how launchd or
+            initd will handle the script during the boot process. However it is possible to customize this step. 
+        </p>
+        <p>
+            If you wish to uninstall/remove the wrapper from the system initialization run the script <u>(as root!)</u>
+            passing the action parameter "remove". This will first stop the running wrapper application and finally
+            clean itself from initialization. 
+        </p>
+        <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+            <tr>
+                <td bgcolor="#eeeeee" class="listingcell">
+                    <font color="#444444">
+                        <pre class="listingpre">$ sudo bin/testwrapper remove
+[sudo] password for tanuki:
+Stopping Test Wrapper Sample Application...
+Stopped Test Wrapper Sample Application.
+Detected Ubuntu:
+Removing service testwrapper from current directory /home/tanuki/wrapper/bin
+...</pre>
+                    </font>
+                </td>
+            </tr>
+        </table>
+    </html>

@@ -1,0 +1,52 @@
+<html>
+<a name="TestWrapper-JVMhang"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#aaaacc" class="sectionheader3" width="*">
+<H3>Simulate JVM Hang</H3>
+</td>
+</tr>
+<tr>
+<td>
+                
+                
+<p>
+
+                    This test causes the Wrapper to think that the JVM has become hung.
+                    After 30 seconds, the Wrapper times out and decides that the JVM
+                    will not come back and restarts it.
+                </p>
+                
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Console Output:</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper  | --&gt; Wrapper Started as Console
+wrapper  | Launching a JVM...
+jvm 1    | Initializing...
+jvm 1    | Wrapper (Version 3.x.x)
+jvm 1    |
+jvm 1    | start()
+jvm 1    | WARNING: Making JVM appear to be hung...
+wrapper  | JVM appears hung: Timed out waiting for signal from JVM.
+wrapper  | Java Virtual Machine did not exit on request, terminated
+wrapper  | Launching a JVM...
+jvm 2    | Initializing...
+jvm 2    | Wrapper (Version 3.x.x)
+jvm 2    |
+jvm 2    | start()</pre>
+</font></td>
+</tr>
+
+</table>
+            
+</td>
+</tr>
+</table>
+        
+</td>
+</tr>
+</table>
+<html>

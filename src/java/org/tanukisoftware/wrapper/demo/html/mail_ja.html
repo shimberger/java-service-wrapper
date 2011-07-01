@@ -1,0 +1,39 @@
+<html>
+    <b>
+        Wrapperでは、あるイベントに反応して、アラート�?�知をメールで送ることができます�?? 使�?方などのさらに詳しくは、�?�別のプロパティの説明をご覧ください�? 
+    </b>
+    <table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+        <tr>
+            <td class="listingcaption">
+                <i>
+                    �? (JVM再起動に応じてメール通知を�?�信する�?)?�?
+                </i>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#eeeeee" class="listingcell">
+                <font color="#444444">
+                    <pre class="listingpre"># Common Event Email settings.
+#wrapper.event.default.email.debug=TRUE
+wrapper.event.default.email.smtp.host=smtp.mycompany.com
+wrapper.event.default.email.smtp.port=25
+wrapper.event.default.email.subject=[%WRAPPER_HOSTNAME%:%WRAPPER_NAME%:%WRAPPER_EVENT_NAME%] Event Notification
+wrapper.event.default.email.sender=myapp-noreply@mycompany.com
+wrapper.event.default.email.recipient=myapp-admin@mycompany.com
+# Event specific settings.
+wrapper.event.jvm_restart.email=TRUE
+wrapper.event.jvm_restart.email.body=The JVM was restarted.\n\nPlease check on its status.\n</pre>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <p>
+            こ�?�プロパティは�??��<b><tt>wrapper.event.&lt;x&gt;.email*</tt></b>?��形式で�?
+            �?<tt>x</tt>」�?�部は、上記で定義され�?<a href="props-event.html#events">イベント�?�種類�?��?つ</a>�?
+            ある�?は、�??<tt>default</tt>?��デフォルト）�?��?�キーワードが入ります�??
+    </p>
+    <p>
+            プロパティに何もイベント名が特別には定義されて�?な�?時�?��?つでも�?�デフォルト�?�が適用されます�??
+            全てのイベント�?�メールに対して�?般�?な値を設定する�?�に便利です�??
+    </p>
+ </html>

@@ -1,0 +1,58 @@
+<a name="TestWrapper-NativeAccessViolation"></a>
+<table cellpadding="2" cellspacing="0" width="100%" border="0">
+<tr>
+<td bgcolor="#aaaacc" class="sectionheader3" width="*">
+<H3>Crash</H3>
+</td>
+
+</tr>
+<tr>
+<td>
+                
+                
+<p>
+                    The Wrapper includes a lightweight native library 
+                    which is used to handle system events. 
+                    The library also contains a native method,
+                    which is used for testing, to cause an access violation in native code due to a NULL reference.
+                </p>
+                
+<p>
+                    Depending on the JVM, this will give different output. 
+                    In the example below, the JVM created a core dump which takes about a minute to save.
+                    During this time, the JVM appears to be hung so the Wrapper kills and restarts it.
+                </p>
+                
+
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="listing">
+<tr>
+<td class="listingcaption"><i>Console Output:</i></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee" class="listingcell"><font color="#444444">
+<pre class="listingpre">wrapper  | --&gt; Wrapper Started as Console
+wrapper  | Launching a JVM...
+jvm 1    | Initializing...
+jvm 1    | Wrapper (Version 3.x.x)
+jvm 1    |
+jvm 1    | start()
+jvm 1    | WARNING: Attempting to cause an access violation...
+jvm 1    | #
+jvm 1    | # An EXCEPTION_ACCESS_VIOLATION exception has been detected in native code outside the VM.
+jvm 1    | # Program counter=0x8f7105f
+jvm 1    | #
+wrapper  | JVM is hung: Timed out waiting for signal from JVM.
+wrapper  | Java Virtual Machine did not exit on request, terminated
+wrapper  | Launching a JVM...
+jvm 2    | Initializing...
+jvm 2    | Wrapper (Version 3.x.x)
+jvm 2    |
+jvm 2    | start()</pre>
+</font></td>
+</tr>
+</table>
+            
+</td>
+</tr>
+
+</table>
