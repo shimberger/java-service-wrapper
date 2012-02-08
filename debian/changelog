@@ -1,11 +1,5 @@
-java-service-wrapper (3.5.9-0ubuntu2~lucid) lucid; urgency=low
+java-service-wrapper (3.5.9-0debian1~squeeze) lucid; urgency=low
 
-  * Corrected version so that it includes the ubuntu release
+  * Initial debianized version 
 
- -- Sebastian Himberger <sebastian@himberger.de>  Fri, 01 Jul 2011 19:47:45 +0200
-
-java-service-wrapper (3.5.9-0ubuntu1) lucid; urgency=low
-
-  * Initial release of package
-
- -- Sebastian Himberger <sebastian@himberger.de>  Fri, 01 Jul 2011 14:01:45 +0200
+ -- Sebastian Himberger <sebastian@himberger.de>  Wed, 08 Feb 2012 19:47:45 +0200

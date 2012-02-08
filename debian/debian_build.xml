@@ -3,7 +3,7 @@
   <property name="bits" value="${deb.arch}"/>
 
   <target name="build">
-    <echo message="Building for ${deb.arch} bit ..."/>
+    <echo message="Building for ${deb.arch} bit with JAVA_HOME: ${env.JAVA_HOME}  ..."/>
     <ant target="main" />
   </target>
 

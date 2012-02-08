@@ -16,7 +16,9 @@ DEBANT  := 'debian/debian_build.xml'
 INSROOT := 'debian/$(PKGNAME)'
 ANTCMD  := /usr/bin/ant -f $(DEBANT) -Ddeb.arch=$(ARCH) -Ddeb.debvers=$(DEBVERS) -Ddeb.version=$(VERSION) -Ddeb.pkgname=$(PKGNAME) -Ddeb.installroot=$(INSROOT)
 
-JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
+JAVA_HOME_32 := /usr/lib/jvm/java-6-openjdk
+JAVA_HOME_64 := /usr/lib/jvm/java-6-openjdk-amd64
+JAVA_HOME := $(shell if test -f $(JAVA_HOME_64)/include/jni.h; then echo $(JAVA_HOME_64);else echo $(JAVA_HOME_32);fi)
 export JAVA_HOME
 
 build:
