@@ -1,3 +1,9 @@
+java-service-wrapper (3.5.9-0ubuntu3~precise) precise; urgency=low
+
+  * Fixed Makefiles for new ubuntu
+
+ -- Sebastian Himberger <sebastian@himberger.de>  Sat, 21 Jul 2012 00:10:45 +0200
+
 java-service-wrapper (3.5.9-0ubuntu2~precise) precise; urgency=low
 
   * New branch for precise
