@@ -16,7 +16,7 @@ DEBANT  := 'debian/debian_build.xml'
 INSROOT := 'debian/$(PKGNAME)'
 ANTCMD  := /usr/bin/ant -f $(DEBANT) -Ddeb.arch=$(ARCH) -Ddeb.debvers=$(DEBVERS) -Ddeb.version=$(VERSION) -Ddeb.pkgname=$(PKGNAME) -Ddeb.installroot=$(INSROOT)
 
-JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
+JAVA_HOME=/usr/lib/jvm/java-6-openjdk-$(DEBARCH)/
 export JAVA_HOME
 
 build:
